@@ -94,7 +94,13 @@
 
         // create the controller
         raymondSimpleApp
-                .controller('raymondSimpleController', ['$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+                .config(["$logProvider", function($logProvider ) {
+                    $logProvider.debugEnabled(false);
+                }])
+                .controller('raymondSimpleController', ['$log', '$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($log, $rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+
+                    // using $log
+                    $log.debug('this will show as long as debugEnabled is true in the config()');
 
                     // get the root element and turn it into jQuery object
                     console.log( $($rootElement).get(0) );
