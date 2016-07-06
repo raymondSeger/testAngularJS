@@ -15,6 +15,7 @@
 
         // create the service - service & factory - service
         raymondSimpleApp
+                .value('testValueService', "the_value")
                 .service('testService', function() {
                     // these two will be created automatically by .service(), and this will be returned automatically
                     // var this = {};
@@ -97,13 +98,15 @@
                 .config(["$logProvider", function($logProvider ) {
                     $logProvider.debugEnabled(false);
                 }])
-                .controller('raymondSimpleController', ['$log', '$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($log, $rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+                .controller('raymondSimpleController', ['testValueService', '$log', '$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function(testValueService, $log, $rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+
+                    console.log(testValueService);
 
                     // using $log
-                    $log.debug('this will show as long as debugEnabled is true in the config()');
+                    // $log.debug('this will show as long as debugEnabled is true in the config()');
 
                     // get the root element and turn it into jQuery object
-                    console.log( $($rootElement).get(0) );
+                    // console.log( $($rootElement).get(0) );
 
                     // use window in angular
                     // $window.alert('a');
