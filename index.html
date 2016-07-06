@@ -94,7 +94,10 @@
 
         // create the controller
         raymondSimpleApp
-                .controller('raymondSimpleController', ['$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+                .controller('raymondSimpleController', ['$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+
+                    // get the root element and turn it into jQuery object
+                    console.log( $($rootElement).get(0) );
 
                     // use window in angular
                     // $window.alert('a');
@@ -107,9 +110,11 @@
                     */
 
                     // interval
+                    /*
                     $interval(function(){
                         swal('from $interval');
                     }, 1000);
+                    */
 
                     // use the service
                     // console.log( testService );
