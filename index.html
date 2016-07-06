@@ -24,7 +24,7 @@
 
                     raymondSimpleController.simpleAlertFunction = function() {
                         swal('Any fool can use a computer');
-                    }
+                    };
 
                 })
                 .directive('exampletabs', function() {
@@ -45,6 +45,29 @@
                         '</div>',
                         replace: false
                     };
+                })
+                .component('phoneList', {
+                    restrict: 'E',
+                    transclude: false,
+                    scope: {
+                    },
+                    replace: false,
+                    controller: function($scope){
+                        $scope.phones = [{
+                            name: 'Nexus S',
+                            snippet: 'Fast just got faster with Nexus S.'
+                        }, {
+                            name: 'Motorola XOOM™ with Wi-Fi',
+                            snippet: 'The Next, Next Generation tablet.'
+                        }];
+                    },
+                    template:
+                    '<ul>' +
+                        '<li ng-repeat="phone in phones">' +
+                            '<span>{{phone.name}}</span>' +
+                            '<p>{{phone.snippet}}</p>' +
+                        '</li>' +
+                    '</ul>'
                 });
     </script>
     <style>
@@ -59,6 +82,7 @@
 
     <exampletabs></exampletabs>
 
+    <phone-list></phone-list>
 
     <!-- use todoList as alias for TodoListController -->
     <div ng-controller="raymondSimpleController as raymondSimpleController">
