@@ -10,23 +10,45 @@
             console.log(angular.version);
         });
 
-        angular.module('raymondSimpleApp', [])
-                .controller('raymondSimpleController', function() {
+        // create the module that can have services, components / directives
+        var raymondSimpleApp = angular.module('raymondSimpleApp', []);
 
-                    var raymondSimpleController    = this;
+        // create the service - service & factory - service
+        raymondSimpleApp
+                .service('testService', function() {
+                    // these two will be created automatically by .service(), and this will be returned automatically
+                    // var this = {};
+                    // return this
 
-                    // the array that will be foreach in the HTML-Angular
-                    raymondSimpleController.myArray  = [
-                        { text:'learn angular', done:true, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' },
-                        { text:'build an angular app', done:false, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' },
-                        { text:'enjoy angular', done:false, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' }
-                    ];
-
-                    raymondSimpleController.simpleAlertFunction = function() {
-                        swal('Any fool can use a computer');
-                    };
-
+                    this.name = "raymond";
+                    this.age = 26;
+                    this.customMethodInService = function(){
+                        swal('Inside testService - service');
+                    }
                 })
+                .factory('testFactory', function(){
+                    var obj = {};
+                    obj.name = "raymond";
+                    obj.age = 26;
+                    obj.customMethodInFactory = function(){
+                        swal('Inside testFactory - factory');
+                    };
+                    return obj;
+                })
+                .factory('testFactoryObject', function(){
+                    return function(name, age){
+                        return {
+                            name: name,
+                            age: age,
+                            customMethod: function(){
+                                swal('Inside testFactoryObject - factory');
+                            }
+                        }
+                    }
+                });
+
+        // create directive / component
+        raymondSimpleApp
                 .directive('exampletabs', function() {
                     return {
                         restrict: 'E',
@@ -63,12 +85,44 @@
                     },
                     template:
                     '<ul>' +
-                        '<li ng-repeat="phone in phones">' +
-                            '<span>{{phone.name}}</span>' +
-                            '<p>{{phone.snippet}}</p>' +
-                        '</li>' +
+                    '<li ng-repeat="phone in phones">' +
+                    '<span>{{phone.name}}</span>' +
+                    '<p>{{phone.snippet}}</p>' +
+                    '</li>' +
                     '</ul>'
                 });
+
+        // create the controller
+        raymondSimpleApp
+                .controller('raymondSimpleController', ['testService', 'testFactory', 'testFactoryObject', function(testService, testFactory, testFactoryObject) {
+                    
+                    // use the service
+                    console.log( testService );
+                    testService.customMethodInService();
+
+                    // use the factory
+                    console.log(testFactory);
+                    testFactory.customMethodInFactory();
+
+                    // use the factory 2
+                    var testFactoryObject1 = new testFactoryObject();
+                    console.log(testFactoryObject1);
+                    testFactoryObject1.customMethod();
+
+                    var raymondSimpleController    = this;
+
+                    // the array that will be foreach in the HTML-Angular
+                    raymondSimpleController.myArray  = [
+                        { text:'learn angular', done:true, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' },
+                        { text:'build an angular app', done:false, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' },
+                        { text:'enjoy angular', done:false, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' }
+                    ];
+
+                    raymondSimpleController.simpleAlertFunction = function() {
+                        swal('Any fool can use a computer');
+                    };
+
+                }]);
     </script>
     <style>
         .done-true {
