@@ -151,7 +151,7 @@
         <ul class="unstyled">
 
             <!-- foreach TodoListController.todos as todoObject -->
-            <li ng-repeat="myArrayObject in raymondSimpleController.myArray">
+            <li ng-repeat="myArrayObject in raymondSimpleController.myArray | orderBy:'text'">
                 <img ng-style="{width:'50px'}" ng-src="{{ myArrayObject.the_image }}" alt="">
                 <label class="checkbox">
                     <input type="checkbox" ng-model="myArrayObject.done">
