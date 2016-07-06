@@ -1,6 +1,8 @@
 <!doctype html>
 <html ng-app="raymondSimpleApp">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/4.0.8/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/sweetalert2/4.0.8/sweetalert2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script>
         angular.module('raymondSimpleApp', [])
@@ -16,7 +18,7 @@
                     ];
 
                     raymondSimpleController.simpleAlertFunction = function() {
-                        alert('a');
+                        swal('Any fool can use a computer');
                     }
 
                 });
