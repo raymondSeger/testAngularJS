@@ -94,8 +94,8 @@
 
         // create the controller
         raymondSimpleApp
-                .controller('raymondSimpleController', ['testService', 'testFactory', 'testFactoryObject', function(testService, testFactory, testFactoryObject) {
-                    
+                .controller('raymondSimpleController', ['testService', 'testFactory', 'testFactoryObject', '$rootScope', function(testService, testFactory, testFactoryObject, $rootScope) {
+
                     // use the service
                     console.log( testService );
                     testService.customMethodInService();
@@ -108,6 +108,10 @@
                     var testFactoryObject1 = new testFactoryObject();
                     console.log(testFactoryObject1);
                     testFactoryObject1.customMethod();
+
+                    // use the root scope, which will be available in the entire application.
+                    $rootScope.rootName = 'the Big app';
+
 
                     var raymondSimpleController    = this;
 
