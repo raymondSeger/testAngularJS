@@ -1,49 +1,23 @@
 <!doctype html>
-<html ng-app="mySimpleApp">
+<html ng-app="raymondSimpleApp">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script>
-        angular.module('mySimpleApp', [])
-                .controller('TodoListController', function() {
+        angular.module('raymondSimpleApp', [])
+                .controller('raymondSimpleController', function() {
 
-                    // alias, the name fits with the alias in the HTML for this controller. TodoListController == todoList
-                    var todoList    = this;
+                    var raymondSimpleController    = this;
 
                     // the array that will be foreach in the HTML-Angular
-                    todoList.todos  = [
+                    raymondSimpleController.myArray  = [
                         { text:'learn angular', done:true },
                         { text:'build an angular app', done:false },
                         { text:'enjoy angular', done:false }
                     ];
 
-                    // push the object to todoList.todos, and then emptied the todoList.todoText for data-binding in the HTML-Angular
-                    todoList.addTodo = function() {
-                        todoList.todos.push( {text: todoList.todoText , done:false} );
-                        todoList.todoText = '';
-                    };
-
-                    todoList.remaining = function() {
-                        var count = 0;
-
-                        angular.forEach(todoList.todos, function(todo) {
-                            count += todo.done ? 0 : 1;
-                        });
-
-                        return count;
-                    };
-
-                    todoList.archive = function() {
-
-                        var oldTodos    = todoList.todos;
-                        todoList.todos  = [];
-                        angular.forEach(oldTodos, function(todo) {
-                            if (!todo.done) {
-                                todoList.todos.push(todo);
-                            }
-                            console.log(todoList.todos);
-                        });
-
-                    };
+                    raymondSimpleController.simpleAlertFunction = function() {
+                        alert('a');
+                    }
 
                 });
     </script>
@@ -58,28 +32,23 @@
     <h2>Todo</h2>
 
     <!-- use todoList as alias for TodoListController -->
-    <div ng-controller="TodoListController as todoList">
+    <div ng-controller="raymondSimpleController as raymondSimpleController">
 
         <!-- run remaining() method inside TodoListController , and get the length from todoList.todos -->
-        <span>{{ todoList.remaining() }} of {{ todoList.todos.length }} remaining</span>
-
-        <!-- run archive() when the user clicked the link -->
-        [ <a href="" ng-click="todoList.archive()">archive</a> ]
+        <span>My total array: {{ raymondSimpleController.myArray.length }}</span>
 
         <ul class="unstyled">
             <!-- foreach TodoListController.todos as todoObject -->
-            <li ng-repeat="todoObject in todoList.todos">
+            <li ng-repeat="myArrayObject in raymondSimpleController.myArray">
                 <label class="checkbox">
-                    <input type="checkbox" ng-model="todoObject.done">
-                    <span class="done-{{ todoObject.done }}">{{ todoObject.text }}</span>
+                    <input type="checkbox" ng-model="myArrayObject.done">
+                    <span class="done-{{ myArrayObject.done }}">{{ myArrayObject.text }}</span>
                 </label>
             </li>
         </ul>
 
-        <form ng-submit="todoList.addTodo()">
-            <input type="text" ng-model="todoList.todoText"  size="30" placeholder="add new todo here" />
-            <input class="btn-primary" type="submit" value="add" />
-        </form>
+        <button ng-click="raymondSimpleController.simpleAlertFunction()">Click me</button>
+
 
     </div>
 
