@@ -94,7 +94,10 @@
 
         // create the controller
         raymondSimpleApp
-                .controller('raymondSimpleController', ['testService', 'testFactory', 'testFactoryObject', '$rootScope', function(testService, testFactory, testFactoryObject, $rootScope) {
+                .controller('raymondSimpleController', ['$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($window, testService, testFactory, testFactoryObject, $rootScope) {
+
+                    // use window in angular
+                    $window.alert('a');
 
                     // use the service
                     // console.log( testService );
