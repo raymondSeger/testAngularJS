@@ -12,9 +12,9 @@
 
                     // the array that will be foreach in the HTML-Angular
                     raymondSimpleController.myArray  = [
-                        { text:'learn angular', done:true },
-                        { text:'build an angular app', done:false },
-                        { text:'enjoy angular', done:false }
+                        { text:'learn angular', done:true, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' },
+                        { text:'build an angular app', done:false, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' },
+                        { text:'enjoy angular', done:false, the_image:'http://getuikit.com/docs/images/placeholder_480x260.svg' }
                     ];
 
                     raymondSimpleController.simpleAlertFunction = function() {
@@ -64,6 +64,7 @@
         <ul class="unstyled">
             <!-- foreach TodoListController.todos as todoObject -->
             <li ng-repeat="myArrayObject in raymondSimpleController.myArray">
+                <img ng-style="{width:'50px'}" ng-src="{{ myArrayObject.the_image }}" alt="">
                 <label class="checkbox">
                     <input type="checkbox" ng-model="myArrayObject.done">
                     <span class="done-{{ myArrayObject.done }}">{{ myArrayObject.text }}</span>
