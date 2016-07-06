@@ -97,17 +97,17 @@
                 .controller('raymondSimpleController', ['testService', 'testFactory', 'testFactoryObject', '$rootScope', function(testService, testFactory, testFactoryObject, $rootScope) {
 
                     // use the service
-                    console.log( testService );
-                    testService.customMethodInService();
+                    // console.log( testService );
+                    // testService.customMethodInService();
 
                     // use the factory
-                    console.log(testFactory);
-                    testFactory.customMethodInFactory();
+                    // console.log(testFactory);
+                    // testFactory.customMethodInFactory();
 
                     // use the factory 2
-                    var testFactoryObject1 = new testFactoryObject();
-                    console.log(testFactoryObject1);
-                    testFactoryObject1.customMethod();
+                    // var testFactoryObject1 = new testFactoryObject();
+                    // console.log(testFactoryObject1);
+                    // testFactoryObject1.customMethod();
 
                     // use the root scope, which will be available in the entire application.
                     $rootScope.rootName = 'the Big app';
@@ -149,14 +149,16 @@
         <span>My total array: {{ raymondSimpleController.myArray.length }}</span>
 
         <ul class="unstyled">
+
             <!-- foreach TodoListController.todos as todoObject -->
             <li ng-repeat="myArrayObject in raymondSimpleController.myArray">
                 <img ng-style="{width:'50px'}" ng-src="{{ myArrayObject.the_image }}" alt="">
                 <label class="checkbox">
                     <input type="checkbox" ng-model="myArrayObject.done">
-                    <span class="done-{{ myArrayObject.done }}">{{ myArrayObject.text }}</span>
+                    <span class="done-{{ myArrayObject.done }}">{{ myArrayObject.text | uppercase }}</span>
                 </label>
             </li>
+
         </ul>
 
         <button ng-click="raymondSimpleController.simpleAlertFunction()">Click me</button>
