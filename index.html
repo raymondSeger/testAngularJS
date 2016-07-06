@@ -94,15 +94,22 @@
 
         // create the controller
         raymondSimpleApp
-                .controller('raymondSimpleController', ['$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+                .controller('raymondSimpleController', ['$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
 
                     // use window in angular
                     // $window.alert('a');
 
                     // $timeout
+                    /*
                     $timeout(function(){
                         swal('from $timeout');
                     }, 3000);
+                    */
+
+                    // interval
+                    $interval(function(){
+                        swal('from $interval');
+                    }, 1000);
 
                     // use the service
                     // console.log( testService );
