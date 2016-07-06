@@ -21,6 +21,25 @@
                         swal('Any fool can use a computer');
                     }
 
+                })
+                .directive('exampletabs', function() {
+                    return {
+                        restrict: 'E',
+                        transclude: false,
+                        scope: {},
+                        controller: function($scope, $element) {
+                            $scope.name = 'exampleTabs';
+                            $scope.exampleFunction = function(){
+                                swal('Any fool can use a computer 2');
+                            }
+                        },
+                        template:
+                        '<div class="tabbable">' +
+                        '<h1>{{name}}</h1>' +
+                        '<button ng-click="exampleFunction()">Click me</button>' +
+                        '</div>',
+                        replace: true
+                    };
                 });
     </script>
     <style>
@@ -32,6 +51,9 @@
 </head>
 <body>
     <h2>Todo</h2>
+
+    <exampletabs></exampletabs>
+
 
     <!-- use todoList as alias for TodoListController -->
     <div ng-controller="raymondSimpleController as raymondSimpleController">
