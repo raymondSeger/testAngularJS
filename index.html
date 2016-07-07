@@ -6,13 +6,14 @@
     <script src="https://cdn.jsdelivr.net/sweetalert2/4.0.8/sweetalert2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.js"></script>
     <script>
         $(function(){
             console.log(angular.version);
         });
 
         // create the module that can have services, components / directives
-        var raymondSimpleApp = angular.module('raymondSimpleApp', ['ngCookies']);
+        var raymondSimpleApp = angular.module('raymondSimpleApp', ['ngCookies', 'ngSanitize']);
 
         // create the service - service & factory - service
         raymondSimpleApp
@@ -99,7 +100,8 @@
                 .config(["$logProvider", function($logProvider ) {
                     $logProvider.debugEnabled(false);
                 }])
-                .controller('raymondSimpleController', ['$cookies', 'testValueService', '$log', '$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($cookies, testValueService, $log, $rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+                .controller('raymondSimpleController', [
+                    '$sanitize', '$cookies', 'testValueService', '$log', '$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope',  function($sanitize, $cookies, testValueService, $log, $rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
 
                     // console.log(testValueService);
 
