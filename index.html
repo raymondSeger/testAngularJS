@@ -175,7 +175,7 @@
     <div ng-controller="raymondSimpleController as raymondSimpleController">
 
         <!-- run remaining() method inside TodoListController , and get the length from todoList.todos -->
-        <span>My total array: {{ raymondSimpleController.myArray.length }}</span>
+        <span ng-cloak>My total array: {{ raymondSimpleController.myArray.length }}</span>
 
         <ul class="unstyled">
 
@@ -183,8 +183,8 @@
             <li ng-repeat="myArrayObject in raymondSimpleController.myArray | orderBy:'text'">
                 <img ng-style="{width:'50px'}" ng-src="{{ myArrayObject.the_image }}" alt="">
                 <label class="checkbox">
-                    <input type="checkbox" ng-model="myArrayObject.done">
-                    <span class="done-{{ myArrayObject.done }}">{{ myArrayObject.text | uppercase }}</span>
+                    <input type="checkbox" ng-model="myArrayObject.done" ng-cloak>
+                    <span class="done-{{ myArrayObject.done }}" ng-cloak>{{ myArrayObject.text | uppercase }}</span>
                 </label>
             </li>
 
