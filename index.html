@@ -5,13 +5,14 @@
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/sweetalert2/4.0.8/sweetalert2.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
     <script>
         $(function(){
             console.log(angular.version);
         });
 
         // create the module that can have services, components / directives
-        var raymondSimpleApp = angular.module('raymondSimpleApp', []);
+        var raymondSimpleApp = angular.module('raymondSimpleApp', ['ngCookies']);
 
         // create the service - service & factory - service
         raymondSimpleApp
@@ -98,10 +99,13 @@
                 .config(["$logProvider", function($logProvider ) {
                     $logProvider.debugEnabled(false);
                 }])
-                .controller('raymondSimpleController', ['testValueService', '$log', '$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function(testValueService, $log, $rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
+                .controller('raymondSimpleController', ['$cookies', 'testValueService', '$log', '$rootElement', '$interval', '$timeout', '$window', 'testService', 'testFactory', 'testFactoryObject', '$rootScope', function($cookies, testValueService, $log, $rootElement, $interval, $timeout, $window, testService, testFactory, testFactoryObject, $rootScope) {
 
-                    console.log(testValueService);
+                    // console.log(testValueService);
 
+                    // using the $cookie
+                    $cookies.put("cookie_key", "cookie_value");
+                    console.log( $cookies.get('cookie_key') );
                     // using $log
                     // $log.debug('this will show as long as debugEnabled is true in the config()');
 
